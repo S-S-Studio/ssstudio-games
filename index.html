@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>sstudio games</title>
-  <meta name="description" content="Arcade, mini and puzzle games for mobile by sstudio games." />
+  <title>S&amp;S Studio Games</title>
+  <meta name="description" content="Android games from S&amp;S Studio." />
 
   <style>
     :root {
@@ -20,9 +20,7 @@
       --text-secondary: #AEB8CC;
       --text-muted: #7E8AA5;
       --accent: #38BDF8;
-      --accent-deep: #0EA5E9;
       --purple: #8B5CF6;
-      --cyan: #67E8F9;
       --success: #22C55E;
       --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
       --radius-panel: 30px;
@@ -31,28 +29,22 @@
       --container: 1160px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(56,189,248,0.18), transparent 30%),
-        radial-gradient(circle at bottom right, rgba(139,92,246,0.16), transparent 36%),
+        radial-gradient(circle at top left, rgba(56,189,248,0.16), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(139,92,246,0.15), transparent 36%),
         var(--page-bg);
       color: var(--text);
       line-height: 1.6;
     }
 
-    a {
-      color: inherit;
-    }
+    a { color: inherit; }
 
     a:focus-visible,
     button:focus-visible {
@@ -63,9 +55,9 @@
     .site-header {
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 30;
       height: 68px;
-      background: rgba(11, 16, 32, 0.82);
+      background: rgba(11, 16, 32, 0.86);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(148, 163, 184, 0.16);
     }
@@ -79,6 +71,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 18px;
+      position: relative;
     }
 
     .brand {
@@ -86,8 +79,9 @@
       align-items: center;
       gap: 10px;
       text-decoration: none;
-      font-weight: 800;
+      font-weight: 850;
       letter-spacing: 0.2px;
+      white-space: nowrap;
     }
 
     .brand-mark {
@@ -97,26 +91,71 @@
       background: linear-gradient(135deg, var(--accent), var(--purple));
       box-shadow: 0 0 22px rgba(56, 189, 248, 0.65);
       transform: rotate(12deg);
+      flex: 0 0 auto;
     }
 
-    .nav-links {
+    .desktop-nav {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 22px;
       color: var(--text-secondary);
-      font-weight: 650;
+      font-weight: 700;
       font-size: 14px;
     }
 
-    .nav-links a {
+    .desktop-nav a,
+    .mobile-home,
+    .mobile-menu a {
       text-decoration: none;
-      padding: 9px 10px;
-      border-radius: 999px;
     }
 
-    .nav-links a:hover {
+    .desktop-nav a:hover,
+    .mobile-home:hover,
+    .mobile-menu a:hover {
       color: var(--text);
-      background: rgba(148, 163, 184, 0.10);
+    }
+
+    .mobile-nav {
+      display: none;
+      align-items: center;
+      gap: 18px;
+      color: var(--text-secondary);
+      font-weight: 750;
+      font-size: 14px;
+    }
+
+    .menu-button {
+      border: 0;
+      background: transparent;
+      color: var(--text-secondary);
+      font: inherit;
+      font-size: 26px;
+      line-height: 1;
+      padding: 4px 0 4px 8px;
+      cursor: pointer;
+    }
+
+    .menu-button:hover { color: var(--text); }
+
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      right: 18px;
+      top: 60px;
+      min-width: 170px;
+      background: rgba(11, 16, 32, 0.98);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 10px;
+    }
+
+    .mobile-menu.open { display: grid; }
+
+    .mobile-menu a {
+      padding: 11px 12px;
+      color: var(--text-secondary);
+      font-weight: 750;
     }
 
     .container {
@@ -125,54 +164,47 @@
       padding: 0 20px;
     }
 
-    .hero {
-      padding: 74px 0 58px;
-    }
+    .hero { padding: 76px 0 52px; }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.02fr) minmax(280px, 0.8fr);
-      gap: 38px;
+      grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.85fr);
+      gap: 48px;
       align-items: center;
     }
 
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      width: fit-content;
-      border-radius: 999px;
-      padding: 7px 12px;
-      color: #CFFAFE;
-      background: rgba(56,189,248,0.10);
-      border: 1px solid rgba(56,189,248,0.22);
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 1.1;
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--accent);
+      font-weight: 850;
+      letter-spacing: 0.02em;
+      font-size: 14px;
     }
 
     .hero h1 {
-      margin: 20px 0 18px;
-      max-width: 740px;
-      font-size: clamp(38px, 7vw, 64px);
+      margin: 0 0 18px;
+      max-width: 680px;
+      font-size: clamp(38px, 6vw, 58px);
       line-height: 1.05;
-      letter-spacing: -1.8px;
+      letter-spacing: -1.6px;
+    }
+
+    .hero p,
+    .about-hero p,
+    .section-header p,
+    .game-card p,
+    .goal-card p,
+    .contact-panel p {
+      color: var(--text-secondary);
     }
 
     .hero p {
-      max-width: 640px;
+      max-width: 650px;
       margin: 0;
-      color: var(--text-secondary);
       font-size: clamp(16px, 2.3vw, 18px);
     }
 
-    .hero-actions {
-      margin-top: 26px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
+    .hero-actions { margin-top: 26px; }
 
     .button {
       display: inline-flex;
@@ -185,7 +217,7 @@
       background: linear-gradient(135deg, var(--accent), var(--purple));
       color: white;
       text-decoration: none;
-      font-weight: 800;
+      font-weight: 850;
       font-size: 15px;
       line-height: 1;
       box-shadow: 0 12px 34px rgba(56,189,248,0.18);
@@ -203,88 +235,27 @@
       margin-top: 18px;
       color: var(--text-muted);
       font-size: 14px;
-      font-weight: 650;
+      font-weight: 700;
     }
 
-    .hero-visual {
-      position: relative;
-      min-height: 360px;
-      display: grid;
-      place-items: center;
+    .about-hero {
+      padding-left: 30px;
+      border-left: 2px solid rgba(56,189,248,0.35);
     }
 
-    .phone-card {
-      width: min(310px, 88vw);
-      min-height: 420px;
-      padding: 18px;
-      border-radius: 34px;
-      background:
-        linear-gradient(145deg, rgba(56,189,248,0.10), rgba(139,92,246,0.10)),
-        rgba(17, 24, 43, 0.86);
-      border: 1px solid rgba(148, 163, 184, 0.20);
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
-      animation: softFloat 7s ease-in-out infinite;
+    .about-hero h2 {
+      margin: 0 0 14px;
+      font-size: clamp(28px, 3.5vw, 38px);
+      line-height: 1.1;
+      letter-spacing: -0.8px;
     }
 
-    .phone-card::before {
-      content: "";
-      position: absolute;
-      inset: -80px auto auto -80px;
-      width: 180px;
-      height: 180px;
-      background: rgba(56,189,248,0.16);
-      border-radius: 999px;
-      filter: blur(4px);
+    .about-hero p {
+      margin: 0;
+      font-size: 17px;
     }
 
-    .mock-screen {
-      position: relative;
-      height: 100%;
-      min-height: 380px;
-      border-radius: 26px;
-      background: var(--deep-bg);
-      border: 1px solid rgba(148, 163, 184, 0.16);
-      padding: 16px;
-      overflow: hidden;
-    }
-
-    .mini-card {
-      border-radius: 20px;
-      padding: 16px;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      margin-bottom: 14px;
-    }
-
-    .mini-art {
-      height: 118px;
-      border-radius: 18px;
-      background:
-        linear-gradient(145deg, rgba(56,189,248,0.18), rgba(139,92,246,0.18));
-      border: 1px solid rgba(148, 163, 184, 0.14);
-      display: grid;
-      place-items: center;
-      color: #CFFAFE;
-      font-weight: 800;
-      letter-spacing: 0.3px;
-    }
-
-    .mini-line {
-      height: 10px;
-      border-radius: 999px;
-      background: rgba(174,184,204,0.18);
-      margin-top: 12px;
-    }
-
-    .mini-line.short {
-      width: 64%;
-    }
-
-    .section {
-      padding: 54px 0;
-    }
+    .section { padding: 56px 0; }
 
     .section-header {
       max-width: 720px;
@@ -300,7 +271,6 @@
 
     .section-header p {
       margin: 0;
-      color: var(--text-secondary);
       font-size: 17px;
     }
 
@@ -311,8 +281,8 @@
     }
 
     .game-card,
-    .info-card,
-    .about-panel {
+    .goal-card,
+    .contact-panel {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: var(--radius-card);
@@ -337,8 +307,7 @@
       place-items: center;
       padding: 18px;
       text-align: center;
-      background:
-        linear-gradient(145deg, rgba(56,189,248,0.18), rgba(139,92,246,0.18));
+      background: linear-gradient(145deg, rgba(56,189,248,0.18), rgba(139,92,246,0.18));
       border: 1px solid rgba(148, 163, 184, 0.16);
       color: #DDFBFF;
       font-weight: 850;
@@ -346,31 +315,15 @@
       overflow: hidden;
     }
 
-    .chip-row {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
+    .game-meta {
       margin-bottom: 12px;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 800;
     }
 
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      border-radius: 999px;
-      padding: 6px 10px;
-      font-size: 12px;
-      line-height: 1;
-      font-weight: 750;
-      color: #CFFAFE;
-      background: rgba(56,189,248,0.10);
-      border: 1px solid rgba(56,189,248,0.22);
-    }
-
-    .chip.secondary {
-      color: #DDD6FE;
-      background: rgba(139,92,246,0.10);
-      border-color: rgba(139,92,246,0.22);
-    }
+    .game-meta .genre { color: #A5F3FC; }
+    .game-meta .status { color: #DDD6FE; }
 
     .game-card h3 {
       margin: 0 0 8px;
@@ -379,87 +332,54 @@
     }
 
     .game-card p,
-    .info-card p,
-    .about-panel p {
-      margin: 0;
-      color: var(--text-secondary);
-    }
+    .goal-card p,
+    .contact-panel p { margin: 0; }
 
     .card-action {
       margin-top: 18px;
       width: 100%;
     }
 
-    .why-grid {
+    .goal-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
     }
 
-    .info-card {
+    .goal-card {
       padding: 24px;
-      background: var(--section-bg);
+      background: rgba(17, 24, 43, 0.82);
     }
 
-    .info-card h3 {
+    .goal-card h3 {
       margin: 0 0 9px;
       font-size: 20px;
     }
 
-    .icon-bubble {
-      width: 42px;
-      height: 42px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 16px;
-      background: rgba(56,189,248,0.12);
-      border: 1px solid rgba(56,189,248,0.22);
-      color: #CFFAFE;
-      font-weight: 900;
-    }
-
-    .about-panel {
+    .contact-panel {
       padding: 28px;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 280px;
-      gap: 26px;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
       align-items: center;
       background:
         linear-gradient(145deg, rgba(56,189,248,0.06), rgba(139,92,246,0.06)),
         var(--section-bg);
     }
 
-    .about-panel h2 {
-      margin: 0 0 12px;
+    .contact-panel h2 {
+      margin: 0 0 10px;
       font-size: 30px;
       line-height: 1.15;
     }
 
-    .badge-panel {
-      display: grid;
-      gap: 10px;
-      padding: 18px;
-      border-radius: 22px;
-      background: rgba(8,12,24,0.55);
-      border: 1px solid rgba(148,163,184,0.16);
+    .email-link {
+      color: #CFFAFE;
+      font-weight: 800;
+      text-decoration: none;
     }
 
-    .badge-item {
-      color: var(--text-secondary);
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .badge-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 14px rgba(56,189,248,0.7);
-    }
+    .email-link:hover { color: var(--text); }
 
     .site-footer {
       margin-top: 54px;
@@ -489,23 +409,11 @@
       text-decoration: none;
     }
 
-    .footer-links a:hover {
-      color: var(--text);
-    }
-
-    @keyframes softFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
+    .footer-links a:hover { color: var(--text); }
 
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
         animation: none !important;
         transition: none !important;
       }
@@ -513,81 +421,28 @@
 
     @media (max-width: 920px) {
       .hero-grid,
-      .about-panel {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        padding-top: 52px;
-      }
-
-      .hero-visual {
-        min-height: 300px;
-      }
-
-      .phone-card {
-        min-height: 350px;
-      }
-
-      .mock-screen {
-        min-height: 310px;
-      }
-
+      .contact-panel { grid-template-columns: 1fr; }
+      .about-hero { padding-left: 22px; }
       .games-grid,
-      .why-grid {
-        grid-template-columns: 1fr 1fr;
-      }
+      .goal-grid { grid-template-columns: 1fr 1fr; }
+      .contact-panel .button { width: fit-content; }
     }
 
     @media (max-width: 640px) {
-      .site-header {
-        height: 64px;
-      }
-
-      .header-inner {
-        padding: 0 18px;
-      }
-
-      .nav-links {
-        gap: 6px;
-      }
-
-      .nav-links a[href="#about"] {
-        display: none;
-      }
-
-      .hero {
-        padding: 42px 0 34px;
-      }
-
-      .section {
-        padding: 42px 0;
-      }
-
+      .site-header { height: 64px; }
+      .header-inner { padding: 0 18px; }
+      .desktop-nav { display: none; }
+      .mobile-nav { display: flex; }
+      .hero { padding: 42px 0 34px; }
+      .section { padding: 42px 0; }
       .games-grid,
-      .why-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .button {
-        width: 100%;
-      }
-
-      .hero-actions {
-        align-items: stretch;
-      }
-
-      .trust-row {
-        font-size: 13px;
-      }
-
-      .phone-card {
-        width: 100%;
-      }
-
-      .about-panel {
-        padding: 22px;
-      }
+      .goal-grid { grid-template-columns: 1fr; }
+      .button { width: 100%; }
+      .hero-actions { align-items: stretch; }
+      .trust-row { font-size: 13px; }
+      .about-hero { margin-top: 14px; }
+      .contact-panel { padding: 22px; }
+      .contact-panel .button { width: 100%; }
     }
   </style>
 </head>
@@ -595,119 +450,105 @@
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="index.html" aria-label="sstudio games home">
+      <a class="brand" href="index.html" aria-label="S&S Studio home">
         <span class="brand-mark" aria-hidden="true"></span>
-        <span>sstudio games</span>
+        <span>S&amp;S Studio</span>
       </a>
 
-      <nav class="nav-links" aria-label="Main navigation">
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
         <a href="#games">Games</a>
-        <a href="#about">About</a>
+        <a href="#about">About us</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <nav class="mobile-nav" aria-label="Mobile navigation">
+        <a class="mobile-home" href="index.html">Home</a>
+        <button class="menu-button" id="menuButton" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+        <div class="mobile-menu" id="mobileMenu">
+          <a href="#games">Games</a>
+          <a href="#about">About us</a>
+          <a href="#contact">Contact</a>
+        </div>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="hero">
+    <section class="hero" id="home">
       <div class="container hero-grid">
         <div>
-          <div class="pill">Mobile arcade • mini • puzzle</div>
-          <h1>Arcade, mini &amp; puzzle games for mobile.</h1>
+          <div class="eyebrow">Android mobile games</div>
+          <h1>Games for Android.</h1>
           <p>
-            Discover simple mobile games from sstudio games. Pick a game, view details,
-            and help us improve with private feedback.
+            Discover simple mobile games from S&amp;S Studio. Leave a comment to help us improve the quality of our gameplay and design.
           </p>
 
           <div class="hero-actions">
             <a class="button" href="#games">Explore Games</a>
           </div>
 
-          <div class="trust-row">Free to play • Private feedback • More games soon</div>
+          <div class="trust-row">Free to play • No forced ads • Built from feedback</div>
         </div>
 
-        <div class="hero-visual" aria-hidden="true">
-          <div class="phone-card">
-            <div class="mock-screen">
-              <div class="mini-card">
-                <div class="mini-art">mini game</div>
-                <div class="mini-line"></div>
-                <div class="mini-line short"></div>
-              </div>
-              <div class="mini-card">
-                <div class="chip-row">
-                  <span class="chip">Puzzle</span>
-                  <span class="chip secondary">Available</span>
-                </div>
-                <div class="mini-line"></div>
-                <div class="mini-line short"></div>
-              </div>
-              <div class="mini-card">
-                <div class="mini-line"></div>
-                <div class="mini-line short"></div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <aside class="about-hero" id="about" aria-labelledby="about-heading">
+          <h2 id="about-heading">About S&amp;S Studio</h2>
+          <p>
+            S&amp;S Studio is a small Android game studio built by two young self-taught developers, Silver~Sword and SUB_STAG. We started with almost no capital and learned to build from the ground up. Our goal is to create simple, enjoyable mobile games and improve them through real player feedback.
+          </p>
+        </aside>
       </div>
     </section>
 
     <section class="section" id="games">
       <div class="container">
         <div class="section-header">
-          <h2>Our Games</h2>
-          <p>Choose a game to view details, download link and private feedback form.</p>
+          <h2>Games</h2>
+          <p>Browse our Android games, open more info, and leave private feedback for the titles you try.</p>
         </div>
 
         <div class="games-grid" id="gamesGrid" aria-live="polite"></div>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="why-heading">
+    <section class="section" aria-labelledby="goal-heading">
       <div class="container">
         <div class="section-header">
-          <h2 id="why-heading">Why play our games?</h2>
-          <p>Small games, quick fun, and built from player feedback.</p>
+          <h2 id="goal-heading">Our Goal</h2>
+          <p>Small games, quick fun, and steady improvement from real player feedback.</p>
         </div>
 
-        <div class="why-grid">
-          <article class="info-card">
-            <div class="icon-bubble" aria-hidden="true">1</div>
+        <div class="goal-grid">
+          <article class="goal-card">
             <h3>Quick to play</h3>
             <p>Short mobile sessions that are easy to start and easy to come back to.</p>
           </article>
 
-          <article class="info-card">
-            <div class="icon-bubble" aria-hidden="true">2</div>
-            <h3>Private feedback</h3>
-            <p>Tell us what to improve without your comment appearing publicly on the website.</p>
+          <article class="goal-card">
+            <h3>Improve</h3>
+            <p>We are constantly gathering feedback and information to improve our games.</p>
           </article>
 
-          <article class="info-card">
-            <div class="icon-bubble" aria-hidden="true">3</div>
-            <h3>More games coming</h3>
-            <p>One home for current and future sstudio games releases.</p>
+          <article class="goal-card">
+            <h3>More on the way</h3>
+            <p>We are currently working hard on more games for future release.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="about">
+    <section class="section" id="contact">
       <div class="container">
-        <div class="about-panel">
+        <div class="contact-panel">
           <div>
-            <h2>About sstudio games</h2>
+            <h2>Contact</h2>
             <p>
-              sstudio games is a small mobile game studio building arcade, mini and puzzle games.
-              We focus on simple gameplay, fast loading pages, and improving our games through
-              private player feedback.
+              For questions, issues or direct messages, contact S&amp;S Studio at
+              <a class="email-link" href="mailto:ssgamestudiomail@gmail.com">ssgamestudiomail@gmail.com</a>.
             </p>
           </div>
 
-          <div class="badge-panel" aria-label="Studio highlights">
-            <div class="badge-item"><span class="badge-dot" aria-hidden="true"></span> Built for mobile</div>
-            <div class="badge-item"><span class="badge-dot" aria-hidden="true"></span> Player feedback</div>
-            <div class="badge-item"><span class="badge-dot" aria-hidden="true"></span> More games soon</div>
-          </div>
+          <a class="button" href="mailto:ssgamestudiomail@gmail.com">Email S&amp;S Studio</a>
         </div>
       </div>
     </section>
@@ -715,10 +556,12 @@
 
   <footer class="site-footer">
     <div class="footer-inner">
-      <div>© 2026 sstudio games</div>
+      <div>© 2026 S&amp;S Studio</div>
       <div class="footer-links">
+        <a href="index.html">Home</a>
         <a href="#games">Games</a>
-        <a href="#about">About</a>
+        <a href="#about">About us</a>
+        <a href="#contact">Contact</a>
       </div>
     </div>
   </footer>
@@ -769,15 +612,16 @@
             ${game.imageText}
           </div>
 
-          <div class="chip-row">
-            <span class="chip">${game.genre}</span>
-            <span class="chip secondary">${game.status}</span>
+          <div class="game-meta">
+            <span class="genre">${game.genre}</span>
+            <span aria-hidden="true"> / </span>
+            <span class="status">${game.status}</span>
           </div>
 
           <h3>${game.title}</h3>
           <p>${game.shortDescription}</p>
 
-          <a class="button card-action" href="${buildGameUrl(game.id)}">View Game →</a>
+          <a class="button card-action" href="${buildGameUrl(game.id)}">More Info →</a>
         </article>
       `).join("");
     }
@@ -797,8 +641,26 @@
       }).catch(() => {});
     }
 
+    function setupMobileMenu() {
+      const menuButton = document.getElementById("menuButton");
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      menuButton.addEventListener("click", () => {
+        const isOpen = mobileMenu.classList.toggle("open");
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+      });
+
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.remove("open");
+          menuButton.setAttribute("aria-expanded", "false");
+        });
+      });
+    }
+
     renderGames();
     trackVisit();
+    setupMobileMenu();
   </script>
 </body>
 </html>
