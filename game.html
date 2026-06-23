@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sstudio games</title>
+  <meta name="description" content="Game details and private feedback for sstudio games." />
+
+  <style>
+    :root {
+      --page-bg: #0B1020;
+      --deep-bg: #080C18;
+      --section-bg: #11182B;
+      --card-bg: #151E33;
+      --card-bg-2: #10182B;
+      --input-bg: #0F172A;
+      --border: #26324D;
+      --soft-border: rgba(148, 163, 184, 0.18);
+      --text: #F4F7FB;
+      --text-secondary: #AEB8CC;
+      --text-muted: #7E8AA5;
+      --accent: #38BDF8;
+      --accent-deep: #0EA5E9;
+      --purple: #8B5CF6;
+      --success: #22C55E;
+      --error: #EF4444;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+      --radius-panel: 30px;
+      --radius-card: 24px;
+      --radius-button: 15px;
+      --container: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,0.16), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(139,92,246,0.14), transparent 36%),
+        var(--page-bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: 3px solid rgba(56, 189, 248, 0.75);
+      outline-offset: 4px;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      height: 68px;
+      background: rgba(11, 16, 32, 0.82);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+    }
+
+    .header-inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 20px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+    }
+
+    .brand-mark {
+      width: 16px;
+      height: 16px;
+      border-radius: 5px;
+      background: linear-gradient(135deg, var(--accent), var(--purple));
+      box-shadow: 0 0 22px rgba(56, 189, 248, 0.65);
+      transform: rotate(12deg);
+    }
+
+    .header-link {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-weight: 750;
+      font-size: 14px;
+      border-radius: 999px;
+      padding: 9px 10px;
+    }
+
+    .header-link:hover {
+      color: var(--text);
+      background: rgba(148, 163, 184, 0.10);
+    }
+
+    .container {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .page-wrap {
+      padding: 34px 0 0;
+    }
+
+    .secondary-button,
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 22px;
+      border-radius: var(--radius-button);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 15px;
+      line-height: 1;
+      cursor: pointer;
+      transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease, border-color 180ms ease;
+    }
+
+    .button {
+      border: 0;
+      background: linear-gradient(135deg, var(--accent), var(--purple));
+      color: white;
+      box-shadow: 0 12px 34px rgba(56,189,248,0.18);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+      box-shadow: 0 18px 42px rgba(139,92,246,0.22);
+    }
+
+    .secondary-button {
+      border: 1px solid var(--soft-border);
+      background: rgba(17,24,43,0.72);
+      color: var(--text-secondary);
+      min-height: 44px;
+    }
+
+    .secondary-button:hover {
+      border-color: rgba(56,189,248,0.42);
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    .back-row {
+      margin-bottom: 18px;
+    }
+
+    .game-hero {
+      display: grid;
+      grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1fr);
+      gap: 28px;
+      align-items: center;
+      padding: 30px;
+      border-radius: 32px;
+      background:
+        linear-gradient(145deg, rgba(56,189,248,0.07), rgba(139,92,246,0.07)),
+        var(--card-bg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .game-hero::after {
+      content: "";
+      position: absolute;
+      right: -90px;
+      top: -90px;
+      width: 210px;
+      height: 210px;
+      background: rgba(56,189,248,0.13);
+      border-radius: 999px;
+      pointer-events: none;
+    }
+
+    .game-image {
+      aspect-ratio: 1 / 1;
+      border-radius: 26px;
+      background:
+        linear-gradient(145deg, rgba(56,189,248,0.18), rgba(139,92,246,0.18));
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 24px;
+      color: #DDFBFF;
+      font-size: clamp(24px, 4vw, 36px);
+      line-height: 1.1;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      min-height: 240px;
+    }
+
+    .chip-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 12px;
+      line-height: 1;
+      font-weight: 750;
+      color: #CFFAFE;
+      background: rgba(56,189,248,0.10);
+      border: 1px solid rgba(56,189,248,0.22);
+    }
+
+    .chip.secondary {
+      color: #DDD6FE;
+      background: rgba(139,92,246,0.10);
+      border-color: rgba(139,92,246,0.22);
+    }
+
+    .game-hero h1 {
+      margin: 0 0 12px;
+      font-size: clamp(36px, 6vw, 56px);
+      line-height: 1.05;
+      letter-spacing: -1.2px;
+    }
+
+    .game-hero p {
+      max-width: 620px;
+      margin: 0 0 24px;
+      color: var(--text-secondary);
+      font-size: 18px;
+    }
+
+    .section {
+      padding: 34px 0 0;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.85fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 24px;
+      box-shadow: 0 16px 45px rgba(0,0,0,0.18);
+    }
+
+    .card h2 {
+      margin: 0 0 12px;
+      font-size: 26px;
+      line-height: 1.15;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--text-secondary);
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 10px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .feature-list li {
+      color: var(--text-secondary);
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-weight: 650;
+    }
+
+    .feature-list li::before {
+      content: "✓";
+      color: #86EFAC;
+      font-weight: 900;
+    }
+
+    .section-heading {
+      margin: 0 0 16px;
+      font-size: 28px;
+      line-height: 1.15;
+    }
+
+    .screenshots {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .screenshot-card {
+      aspect-ratio: 9 / 16;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(145deg, rgba(56,189,248,0.12), rgba(139,92,246,0.12)),
+        var(--card-bg-2);
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-weight: 800;
+    }
+
+    .feedback-card {
+      max-width: 780px;
+    }
+
+    .private-note {
+      margin-bottom: 18px !important;
+      color: var(--text-secondary);
+    }
+
+    label {
+      display: block;
+      margin: 16px 0 7px;
+      color: var(--text);
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--input-bg);
+      color: var(--text);
+      padding: 14px 16px;
+      font: inherit;
+      transition: border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    select:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(56,189,248,0.10);
+    }
+
+    textarea {
+      min-height: 135px;
+      resize: vertical;
+    }
+
+    .form-actions {
+      margin-top: 16px;
+    }
+
+    .message {
+      display: none;
+      margin-top: 16px;
+      padding: 13px 14px;
+      border-radius: 16px;
+      font-weight: 750;
+    }
+
+    .message.success {
+      display: block;
+      background: rgba(34,197,94,0.12);
+      border: 1px solid rgba(34,197,94,0.35);
+      color: #86EFAC;
+    }
+
+    .message.error {
+      display: block;
+      background: rgba(239,68,68,0.12);
+      border: 1px solid rgba(239,68,68,0.35);
+      color: #FCA5A5;
+    }
+
+    .site-footer {
+      margin-top: 54px;
+      background: var(--deep-bg);
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 24px 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 14px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
+    @media (max-width: 920px) {
+      .game-hero,
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+
+      .screenshots {
+        overflow-x: auto;
+        grid-template-columns: repeat(3, minmax(180px, 1fr));
+        padding-bottom: 4px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .site-header {
+        height: 64px;
+      }
+
+      .header-inner {
+        padding: 0 18px;
+      }
+
+      .page-wrap {
+        padding-top: 24px;
+      }
+
+      .game-hero {
+        padding: 22px;
+      }
+
+      .game-image {
+        min-height: 210px;
+      }
+
+      .button,
+      .secondary-button,
+      .form-actions .button {
+        width: 100%;
+      }
+
+      .back-row .secondary-button {
+        width: auto;
+      }
+
+      .card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" id="brandLink" href="index.html" aria-label="sstudio games home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>sstudio games</span>
+      </a>
+
+      <a class="header-link" id="allGamesLink" href="index.html">All Games</a>
+    </div>
+  </header>
+
+  <main class="page-wrap">
+    <div class="container">
+      <div class="back-row">
+        <a class="secondary-button" id="backLink" href="index.html">← Back to games</a>
+      </div>
+
+      <section class="game-hero" aria-labelledby="gameTitle">
+        <div class="game-image" id="gameImage" role="img" aria-label="Game image placeholder"></div>
+
+        <div>
+          <div class="chip-row">
+            <span class="chip" id="genreChip"></span>
+            <span class="chip secondary" id="statusChip"></span>
+          </div>
+
+          <h1 id="gameTitle"></h1>
+          <p id="gameTagline"></p>
+
+          <a class="button" id="googlePlayLink" href="#" target="_blank" rel="noopener noreferrer">
+            Google Play link coming soon
+          </a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="two-column">
+          <article class="card">
+            <h2>About this game</h2>
+            <p id="longDescription"></p>
+          </article>
+
+          <article class="card">
+            <h2>Features</h2>
+            <ul class="feature-list" id="featureList"></ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="screenshotsHeading">
+        <h2 class="section-heading" id="screenshotsHeading">Screenshots</h2>
+        <div class="screenshots" id="screenshots"></div>
+      </section>
+
+      <section class="section">
+        <article class="card feedback-card">
+          <h2>Help improve this game</h2>
+          <p class="private-note">Feedback is private and will not appear on the website.</p>
+
+          <label for="ageGroup">Age group optional</label>
+          <select id="ageGroup">
+            <option value="prefer not to say">Prefer not to say</option>
+            <option value="under 13">Under 13</option>
+            <option value="13-17">13–17</option>
+            <option value="18-24">18–24</option>
+            <option value="25-34">25–34</option>
+            <option value="35+">35+</option>
+          </select>
+
+          <label for="comment">Comment</label>
+          <textarea id="comment" maxlength="500" placeholder="Tell us what you liked, what felt confusing, or what we should improve."></textarea>
+
+          <div class="form-actions">
+            <button class="button" id="sendButton" type="button">Send Feedback</button>
+          </div>
+
+          <div class="message" id="messageArea" role="status" aria-live="polite"></div>
+        </article>
+      </section>
+
+      <section class="section">
+        <article class="card">
+          <h2>About the developers</h2>
+          <p>
+            sstudio games is a small mobile game studio building arcade, mini and puzzle games.
+            We use private player feedback to improve our games over time.
+          </p>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>© 2026 sstudio games</div>
+      <div class="footer-links">
+        <a id="footerGamesLink" href="index.html">All Games</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const feedbackUrl = "https://script.google.com/macros/s/AKfycbx-gKRLXGlwSCIi0dkzVSFX-Z6tAc5lcwOO4lYgAGhvA5aaloLud3He9ZnJM9fMpgVG-A/exec";
+
+    const games = [
+      {
+        id: "memory-match",
+        title: "Memory Match",
+        shortDescription: "Match cards, train your memory, and complete levels with fewer moves.",
+        longDescription: "Memory Match is a simple mobile puzzle game where players match cards, improve memory, and try to complete levels with fewer moves.",
+        genre: "Puzzle",
+        status: "Available",
+        features: [
+          "Quick mobile sessions",
+          "Simple controls",
+          "Increasing difficulty",
+          "Lightweight and easy to play"
+        ],
+        googlePlayUrl: "",
+        imageText: "Memory Match"
+      },
+      {
+        id: "block-runner",
+        title: "Block Runner",
+        shortDescription: "Dodge obstacles and chase a better run in quick mobile sessions.",
+        longDescription: "Block Runner is a fast arcade-style mobile game designed for short runs and quick restarts.",
+        genre: "Arcade",
+        status: "Coming Soon",
+        features: [
+          "Quick restarts",
+          "Simple movement",
+          "Mobile-friendly controls",
+          "Fast arcade sessions"
+        ],
+        googlePlayUrl: "",
+        imageText: "Block Runner"
+      },
+      {
+        id: "puzzle-drop",
+        title: "Puzzle Drop",
+        shortDescription: "A simple puzzle challenge built for short, relaxing play sessions.",
+        longDescription: "Puzzle Drop is a lightweight puzzle game designed for easy mobile play and simple progression.",
+        genre: "Mini Game",
+        status: "Coming Soon",
+        features: [
+          "Simple puzzle play",
+          "Short sessions",
+          "Clean interface",
+          "Easy to learn"
+        ],
+        googlePlayUrl: "",
+        imageText: "Puzzle Drop"
+      }
+    ];
+
+    const params = new URLSearchParams(window.location.search);
+    const gameId = params.get("game") || "memory-match";
+    const campaignId = params.get("src") || params.get("campaign") || "direct";
+
+    const game = games.find((item) => item.id === gameId) || games[0];
+
+    function pageUrl(path) {
+      return path + "?src=" + encodeURIComponent(campaignId);
+    }
+
+    function setText(id, value) {
+      document.getElementById(id).textContent = value;
+    }
+
+    function renderGame() {
+      document.title = game.title + " - sstudio games";
+
+      setText("gameImage", game.imageText);
+      document.getElementById("gameImage").setAttribute("aria-label", game.title + " game image placeholder");
+
+      setText("genreChip", game.genre);
+      setText("statusChip", game.status);
+      setText("gameTitle", game.title);
+      setText("gameTagline", game.shortDescription);
+      setText("longDescription", game.longDescription);
+
+      const featureList = document.getElementById("featureList");
+      featureList.innerHTML = game.features.map((feature) => `<li>${feature}</li>`).join("");
+
+      const screenshots = document.getElementById("screenshots");
+      screenshots.innerHTML = [1, 2, 3].map((number) => `
+        <div class="screenshot-card" role="img" aria-label="${game.title} screenshot ${number} placeholder">
+          Screenshot coming soon
+        </div>
+      `).join("");
+
+      const googlePlayLink = document.getElementById("googlePlayLink");
+      if (game.googlePlayUrl) {
+        googlePlayLink.href = game.googlePlayUrl;
+        googlePlayLink.textContent = "View on Google Play";
+        googlePlayLink.removeAttribute("aria-disabled");
+      } else {
+        googlePlayLink.href = "#";
+        googlePlayLink.textContent = "Google Play link coming soon";
+        googlePlayLink.setAttribute("aria-disabled", "true");
+        googlePlayLink.addEventListener("click", (event) => event.preventDefault());
+      }
+
+      const backUrl = pageUrl("index.html");
+      document.getElementById("brandLink").href = backUrl;
+      document.getElementById("allGamesLink").href = backUrl;
+      document.getElementById("backLink").href = backUrl;
+      document.getElementById("footerGamesLink").href = backUrl;
+    }
+
+    function trackVisit() {
+      fetch(feedbackUrl, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          event_type: "visit",
+          campaign_id: campaignId,
+          page: game.id
+        })
+      }).catch(() => {});
+    }
+
+    function showMessage(type, text) {
+      const messageArea = document.getElementById("messageArea");
+      messageArea.className = "message " + type;
+      messageArea.textContent = text;
+    }
+
+    function resetMessage() {
+      const messageArea = document.getElementById("messageArea");
+      messageArea.className = "message";
+      messageArea.textContent = "";
+    }
+
+    async function sendFeedback() {
+      resetMessage();
+
+      const ageGroup = document.getElementById("ageGroup").value || "prefer not to say";
+      const commentBox = document.getElementById("comment");
+      const comment = commentBox.value.trim();
+      const sendButton = document.getElementById("sendButton");
+
+      if (!comment) {
+        showMessage("error", "Please type a comment before sending.");
+        commentBox.focus();
+        return;
+      }
+
+      sendButton.disabled = true;
+      sendButton.textContent = "Sending...";
+
+      try {
+        await fetch(feedbackUrl, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            game_name: game.id,
+            age_group: ageGroup,
+            comment: comment,
+            campaign_id: campaignId
+          })
+        });
+
+        commentBox.value = "";
+        document.getElementById("ageGroup").value = "prefer not to say";
+        showMessage("success", "Thank you! Your feedback was sent.");
+      } catch (error) {
+        showMessage("error", "Sorry, something went wrong. Please try again.");
+      } finally {
+        sendButton.disabled = false;
+        sendButton.textContent = "Send Feedback";
+      }
+    }
+
+    renderGame();
+    trackVisit();
+
+    document.getElementById("sendButton").addEventListener("click", sendFeedback);
+  </script>
+</body>
+</html>
