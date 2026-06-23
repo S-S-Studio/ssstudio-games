@@ -4,9 +4,136 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ssstudio games</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #10131a;
+      color: #f5f5f5;
+    }
+
+    header {
+      padding: 40px 20px;
+      text-align: center;
+      background: #161b25;
+      border-bottom: 1px solid #2a3140;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 38px;
+      letter-spacing: 1px;
+    }
+
+    .tagline {
+      margin-top: 10px;
+      color: #b8c0d0;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    .section-title {
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .game-card {
+      background: #171c26;
+      border: 1px solid #2b3344;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+
+    .game-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .game-card p {
+      color: #b8c0d0;
+      line-height: 1.5;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 10px 16px;
+      background: #4f8cff;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    .button:hover {
+      background: #3d78df;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 20px;
+      color: #8f98aa;
+      border-top: 1px solid #2a3140;
+      margin-top: 40px;
+    }
+  </style>
 </head>
+
 <body>
-  <h1>ssstudio games</h1>
-  <p>website test page is working.</p>
+  <header>
+    <h1>ssstudio games</h1>
+    <div class="tagline">arcade, mini and puzzle games for mobile</div>
+  </header>
+
+  <main>
+    <h2 class="section-title">our games</h2>
+
+    <div class="games-grid">
+      <div class="game-card">
+        <h3>test game</h3>
+        <p>A temporary test game card. We will replace this with your real games later.</p>
+        <a class="button" id="testGameLink" href="game.html?game=test-game">view game</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2026 ssstudio games
+  </footer>
+
+  <script>
+    const feedback_url = "https://script.google.com/macros/s/AKfycbx-gKRLXGlwSCIi0dkzVSFX-Z6tAc5lcwOO4lYgAGhvA5aaloLud3He9ZnJM9fMpgVG-A/exec";
+
+    const params = new URLSearchParams(window.location.search);
+    const campaign_id = params.get("src") || params.get("campaign") || "none";
+
+    const testGameLink = document.getElementById("testGameLink");
+    testGameLink.href = "game.html?game=test-game&src=" + encodeURIComponent(campaign_id);
+
+    fetch(feedback_url, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        event_type: "visit",
+        campaign_id: campaign_id,
+        page: "home"
+      })
+    });
+  </script>
 </body>
 </html>
