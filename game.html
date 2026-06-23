@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>sstudio games</title>
-  <meta name="description" content="Game details and private feedback for sstudio games." />
+  <title>S&amp;S Studio Games</title>
+  <meta name="description" content="Game details and private feedback for S&amp;S Studio games." />
 
   <style>
     :root {
@@ -20,7 +20,6 @@
       --text-secondary: #AEB8CC;
       --text-muted: #7E8AA5;
       --accent: #38BDF8;
-      --accent-deep: #0EA5E9;
       --purple: #8B5CF6;
       --success: #22C55E;
       --error: #EF4444;
@@ -31,33 +30,25 @@
       --container: 1120px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(56,189,248,0.16), transparent 30%),
+        radial-gradient(circle at top left, rgba(56,189,248,0.15), transparent 30%),
         radial-gradient(circle at bottom right, rgba(139,92,246,0.14), transparent 36%),
         var(--page-bg);
       color: var(--text);
       line-height: 1.6;
     }
 
-    a {
-      color: inherit;
-    }
+    a { color: inherit; }
 
     a:focus-visible,
-    button:focus-visible,
-    select:focus-visible,
-    textarea:focus-visible {
+    button:focus-visible {
       outline: 3px solid rgba(56, 189, 248, 0.75);
       outline-offset: 4px;
     }
@@ -65,9 +56,9 @@
     .site-header {
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 30;
       height: 68px;
-      background: rgba(11, 16, 32, 0.82);
+      background: rgba(11, 16, 32, 0.86);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(148, 163, 184, 0.16);
     }
@@ -81,6 +72,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 18px;
+      position: relative;
     }
 
     .brand {
@@ -88,8 +80,9 @@
       align-items: center;
       gap: 10px;
       text-decoration: none;
-      font-weight: 800;
+      font-weight: 850;
       letter-spacing: 0.2px;
+      white-space: nowrap;
     }
 
     .brand-mark {
@@ -99,20 +92,67 @@
       background: linear-gradient(135deg, var(--accent), var(--purple));
       box-shadow: 0 0 22px rgba(56, 189, 248, 0.65);
       transform: rotate(12deg);
+      flex: 0 0 auto;
     }
 
-    .header-link {
-      text-decoration: none;
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--text-secondary);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .desktop-nav a,
+    .mobile-home,
+    .mobile-menu a { text-decoration: none; }
+
+    .desktop-nav a:hover,
+    .mobile-home:hover,
+    .mobile-menu a:hover { color: var(--text); }
+
+    .mobile-nav {
+      display: none;
+      align-items: center;
+      gap: 18px;
       color: var(--text-secondary);
       font-weight: 750;
       font-size: 14px;
-      border-radius: 999px;
-      padding: 9px 10px;
     }
 
-    .header-link:hover {
-      color: var(--text);
-      background: rgba(148, 163, 184, 0.10);
+    .menu-button {
+      border: 0;
+      background: transparent;
+      color: var(--text-secondary);
+      font: inherit;
+      font-size: 26px;
+      line-height: 1;
+      padding: 4px 0 4px 8px;
+      cursor: pointer;
+    }
+
+    .menu-button:hover { color: var(--text); }
+
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      right: 18px;
+      top: 60px;
+      min-width: 170px;
+      background: rgba(11, 16, 32, 0.98);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 10px;
+    }
+
+    .mobile-menu.open { display: grid; }
+
+    .mobile-menu a {
+      padding: 11px 12px;
+      color: var(--text-secondary);
+      font-weight: 750;
     }
 
     .container {
@@ -121,11 +161,8 @@
       padding: 0 20px;
     }
 
-    .page-wrap {
-      padding: 34px 0 0;
-    }
+    .page-wrap { padding: 34px 0 0; }
 
-    .secondary-button,
     .button {
       display: inline-flex;
       align-items: center;
@@ -134,18 +171,15 @@
       padding: 0 22px;
       border-radius: var(--radius-button);
       text-decoration: none;
-      font-weight: 800;
+      font-weight: 850;
       font-size: 15px;
       line-height: 1;
       cursor: pointer;
-      transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease, border-color 180ms ease;
-    }
-
-    .button {
       border: 0;
       background: linear-gradient(135deg, var(--accent), var(--purple));
       color: white;
       box-shadow: 0 12px 34px rgba(56,189,248,0.18);
+      transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
     }
 
     .button:hover {
@@ -154,22 +188,24 @@
       box-shadow: 0 18px 42px rgba(139,92,246,0.22);
     }
 
-    .secondary-button {
-      border: 1px solid var(--soft-border);
-      background: rgba(17,24,43,0.72);
+    .button:disabled {
+      cursor: not-allowed;
+      opacity: 0.78;
+      transform: none;
+    }
+
+    .plain-link {
+      display: inline-flex;
+      align-items: center;
       color: var(--text-secondary);
-      min-height: 44px;
+      text-decoration: none;
+      font-weight: 800;
+      min-height: 42px;
     }
 
-    .secondary-button:hover {
-      border-color: rgba(56,189,248,0.42);
-      color: var(--text);
-      transform: translateY(-1px);
-    }
+    .plain-link:hover { color: var(--text); }
 
-    .back-row {
-      margin-bottom: 18px;
-    }
+    .back-row { margin-bottom: 18px; }
 
     .game-hero {
       display: grid;
@@ -202,8 +238,7 @@
     .game-image {
       aspect-ratio: 1 / 1;
       border-radius: 26px;
-      background:
-        linear-gradient(145deg, rgba(56,189,248,0.18), rgba(139,92,246,0.18));
+      background: linear-gradient(145deg, rgba(56,189,248,0.18), rgba(139,92,246,0.18));
       border: 1px solid rgba(148, 163, 184, 0.18);
       display: grid;
       place-items: center;
@@ -217,31 +252,15 @@
       min-height: 240px;
     }
 
-    .chip-row {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
+    .game-meta {
       margin-bottom: 14px;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 850;
     }
 
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      border-radius: 999px;
-      padding: 7px 11px;
-      font-size: 12px;
-      line-height: 1;
-      font-weight: 750;
-      color: #CFFAFE;
-      background: rgba(56,189,248,0.10);
-      border: 1px solid rgba(56,189,248,0.22);
-    }
-
-    .chip.secondary {
-      color: #DDD6FE;
-      background: rgba(139,92,246,0.10);
-      border-color: rgba(139,92,246,0.22);
-    }
+    .game-meta .genre { color: #A5F3FC; }
+    .game-meta .status { color: #DDD6FE; }
 
     .game-hero h1 {
       margin: 0 0 12px;
@@ -257,31 +276,26 @@
       font-size: 18px;
     }
 
-    .section {
-      padding: 34px 0 0;
-    }
+    .section { padding: 34px 0 0; }
 
     .two-column {
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.85fr);
-      gap: 22px;
+      gap: 32px;
+      align-items: start;
     }
 
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-card);
-      padding: 24px;
-      box-shadow: 0 16px 45px rgba(0,0,0,0.18);
-    }
-
-    .card h2 {
+    .info-block h2,
+    .feedback-card h2,
+    .contact-card h2 {
       margin: 0 0 12px;
       font-size: 26px;
       line-height: 1.15;
     }
 
-    .card p {
+    .info-block p,
+    .feedback-card p,
+    .contact-card p {
       margin: 0;
       color: var(--text-secondary);
     }
@@ -289,23 +303,14 @@
     .feature-list {
       display: grid;
       gap: 10px;
-      padding: 0;
+      padding-left: 20px;
       margin: 0;
-      list-style: none;
+      color: var(--text-secondary);
     }
 
     .feature-list li {
-      color: var(--text-secondary);
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
+      padding-left: 2px;
       font-weight: 650;
-    }
-
-    .feature-list li::before {
-      content: "✓";
-      color: #86EFAC;
-      font-weight: 900;
     }
 
     .section-heading {
@@ -335,14 +340,17 @@
       font-weight: 800;
     }
 
-    .feedback-card {
+    .feedback-card,
+    .contact-card {
       max-width: 780px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 24px;
+      box-shadow: 0 16px 45px rgba(0,0,0,0.18);
     }
 
-    .private-note {
-      margin-bottom: 18px !important;
-      color: var(--text-secondary);
-    }
+    .private-note { margin-bottom: 18px !important; }
 
     label {
       display: block;
@@ -352,22 +360,38 @@
       font-size: 14px;
     }
 
+    .select-wrap { position: relative; }
+
     select,
     textarea {
       width: 100%;
       border: 1px solid var(--border);
       border-radius: 16px;
-      background: var(--input-bg);
+      background-color: var(--input-bg);
       color: var(--text);
       padding: 14px 16px;
       font: inherit;
       transition: border-color 180ms ease, box-shadow 180ms ease;
+      outline: none;
+    }
+
+    select {
+      appearance: none;
+      padding-right: 48px;
+      background-image:
+        linear-gradient(45deg, transparent 50%, #AEB8CC 50%),
+        linear-gradient(135deg, #AEB8CC 50%, transparent 50%);
+      background-position:
+        calc(100% - 24px) 52%,
+        calc(100% - 18px) 52%;
+      background-size: 6px 6px, 6px 6px;
+      background-repeat: no-repeat;
     }
 
     select:focus,
     textarea:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 4px rgba(56,189,248,0.10);
+      box-shadow: 0 0 0 3px rgba(56,189,248,0.13);
     }
 
     textarea {
@@ -375,8 +399,22 @@
       resize: vertical;
     }
 
-    .form-actions {
-      margin-top: 16px;
+    .form-actions { margin-top: 16px; }
+
+    .send-content {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.35);
+      border-top-color: #ffffff;
+      border-radius: 50%;
+      animation: spin 800ms linear infinite;
     }
 
     .message {
@@ -401,6 +439,14 @@
       color: #FCA5A5;
     }
 
+    .email-link {
+      color: #CFFAFE;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .email-link:hover { color: var(--text); }
+
     .site-footer {
       margin-top: 54px;
       background: var(--deep-bg);
@@ -419,28 +465,20 @@
       font-size: 14px;
     }
 
-    .footer-links {
-      display: flex;
-      gap: 16px;
-    }
+    .footer-links { display: flex; gap: 16px; }
 
     .footer-links a {
       color: var(--text-secondary);
       text-decoration: none;
     }
 
-    .footer-links a:hover {
-      color: var(--text);
-    }
+    .footer-links a:hover { color: var(--text); }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
 
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
         animation: none !important;
         transition: none !important;
       }
@@ -448,10 +486,7 @@
 
     @media (max-width: 920px) {
       .game-hero,
-      .two-column {
-        grid-template-columns: 1fr;
-      }
-
+      .two-column { grid-template-columns: 1fr; }
       .screenshots {
         overflow-x: auto;
         grid-template-columns: repeat(3, minmax(180px, 1fr));
@@ -460,39 +495,17 @@
     }
 
     @media (max-width: 640px) {
-      .site-header {
-        height: 64px;
-      }
-
-      .header-inner {
-        padding: 0 18px;
-      }
-
-      .page-wrap {
-        padding-top: 24px;
-      }
-
-      .game-hero {
-        padding: 22px;
-      }
-
-      .game-image {
-        min-height: 210px;
-      }
-
+      .site-header { height: 64px; }
+      .header-inner { padding: 0 18px; }
+      .desktop-nav { display: none; }
+      .mobile-nav { display: flex; }
+      .page-wrap { padding-top: 24px; }
+      .game-hero { padding: 22px; }
+      .game-image { min-height: 210px; }
       .button,
-      .secondary-button,
-      .form-actions .button {
-        width: 100%;
-      }
-
-      .back-row .secondary-button {
-        width: auto;
-      }
-
-      .card {
-        padding: 20px;
-      }
+      .form-actions .button { width: 100%; }
+      .feedback-card,
+      .contact-card { padding: 20px; }
     }
   </style>
 </head>
@@ -500,28 +513,44 @@
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" id="brandLink" href="index.html" aria-label="sstudio games home">
+      <a class="brand" id="brandLink" href="index.html" aria-label="S&S Studio home">
         <span class="brand-mark" aria-hidden="true"></span>
-        <span>sstudio games</span>
+        <span>S&amp;S Studio</span>
       </a>
 
-      <a class="header-link" id="allGamesLink" href="index.html">All Games</a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a id="navHome" href="index.html">Home</a>
+        <a id="navGames" href="index.html#games">Games</a>
+        <a id="navAbout" href="index.html#about">About us</a>
+        <a id="navContact" href="index.html#contact">Contact</a>
+      </nav>
+
+      <nav class="mobile-nav" aria-label="Mobile navigation">
+        <a class="mobile-home" id="mobileHome" href="index.html">Home</a>
+        <button class="menu-button" id="menuButton" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+        <div class="mobile-menu" id="mobileMenu">
+          <a id="mobileGames" href="index.html#games">Games</a>
+          <a id="mobileAbout" href="index.html#about">About us</a>
+          <a id="mobileContact" href="index.html#contact">Contact</a>
+        </div>
+      </nav>
     </div>
   </header>
 
   <main class="page-wrap">
     <div class="container">
       <div class="back-row">
-        <a class="secondary-button" id="backLink" href="index.html">← Back to games</a>
+        <a class="plain-link" id="backLink" href="index.html">← Home</a>
       </div>
 
       <section class="game-hero" aria-labelledby="gameTitle">
         <div class="game-image" id="gameImage" role="img" aria-label="Game image placeholder"></div>
 
         <div>
-          <div class="chip-row">
-            <span class="chip" id="genreChip"></span>
-            <span class="chip secondary" id="statusChip"></span>
+          <div class="game-meta">
+            <span class="genre" id="genreText"></span>
+            <span aria-hidden="true"> / </span>
+            <span class="status" id="statusText"></span>
           </div>
 
           <h1 id="gameTitle"></h1>
@@ -535,12 +564,12 @@
 
       <section class="section">
         <div class="two-column">
-          <article class="card">
+          <article class="info-block">
             <h2>About this game</h2>
             <p id="longDescription"></p>
           </article>
 
-          <article class="card">
+          <article class="info-block">
             <h2>Features</h2>
             <ul class="feature-list" id="featureList"></ul>
           </article>
@@ -553,37 +582,41 @@
       </section>
 
       <section class="section">
-        <article class="card feedback-card">
+        <article class="feedback-card">
           <h2>Help improve this game</h2>
           <p class="private-note">Feedback is private and will not appear on the website.</p>
 
-          <label for="ageGroup">Age group optional</label>
-          <select id="ageGroup">
-            <option value="prefer not to say">Prefer not to say</option>
-            <option value="under 13">Under 13</option>
-            <option value="13-17">13–17</option>
-            <option value="18-24">18–24</option>
-            <option value="25-34">25–34</option>
-            <option value="35+">35+</option>
-          </select>
+          <label for="ageGroup">Age group (Optional):</label>
+          <div class="select-wrap">
+            <select id="ageGroup">
+              <option value="prefer not to say">Prefer not to say</option>
+              <option value="under 13">Under 13</option>
+              <option value="13-17">13–17</option>
+              <option value="18-24">18–24</option>
+              <option value="25-34">25–34</option>
+              <option value="35+">35+</option>
+            </select>
+          </div>
 
-          <label for="comment">Comment</label>
+          <label for="comment">Comment:</label>
           <textarea id="comment" maxlength="500" placeholder="Tell us what you liked, what felt confusing, or what we should improve."></textarea>
 
           <div class="form-actions">
-            <button class="button" id="sendButton" type="button">Send Feedback</button>
+            <button class="button" id="sendButton" type="button">
+              <span class="send-content" id="sendButtonContent">Send Feedback</span>
+            </button>
           </div>
 
           <div class="message" id="messageArea" role="status" aria-live="polite"></div>
         </article>
       </section>
 
-      <section class="section">
-        <article class="card">
-          <h2>About the developers</h2>
+      <section class="section" id="contact">
+        <article class="contact-card">
+          <h2>Contact</h2>
           <p>
-            sstudio games is a small mobile game studio building arcade, mini and puzzle games.
-            We use private player feedback to improve our games over time.
+            For questions, issues or direct messages, contact S&amp;S Studio at
+            <a class="email-link" href="mailto:ssgamestudiomail@gmail.com">ssgamestudiomail@gmail.com</a>.
           </p>
         </article>
       </section>
@@ -592,9 +625,12 @@
 
   <footer class="site-footer">
     <div class="footer-inner">
-      <div>© 2026 sstudio games</div>
+      <div>© 2026 S&amp;S Studio</div>
       <div class="footer-links">
-        <a id="footerGamesLink" href="index.html">All Games</a>
+        <a id="footerHome" href="index.html">Home</a>
+        <a id="footerGames" href="index.html#games">Games</a>
+        <a id="footerAbout" href="index.html#about">About us</a>
+        <a id="footerContact" href="index.html#contact">Contact</a>
       </div>
     </div>
   </footer>
@@ -656,11 +692,14 @@
     const params = new URLSearchParams(window.location.search);
     const gameId = params.get("game") || "memory-match";
     const campaignId = params.get("src") || params.get("campaign") || "direct";
-
     const game = games.find((item) => item.id === gameId) || games[0];
 
     function pageUrl(path) {
       return path + "?src=" + encodeURIComponent(campaignId);
+    }
+
+    function anchorUrl(anchor) {
+      return "index.html?src=" + encodeURIComponent(campaignId) + anchor;
     }
 
     function setText(id, value) {
@@ -668,13 +707,13 @@
     }
 
     function renderGame() {
-      document.title = game.title + " - sstudio games";
+      document.title = game.title + " - S&S Studio Games";
 
       setText("gameImage", game.imageText);
       document.getElementById("gameImage").setAttribute("aria-label", game.title + " game image placeholder");
 
-      setText("genreChip", game.genre);
-      setText("statusChip", game.status);
+      setText("genreText", game.genre);
+      setText("statusText", game.status);
       setText("gameTitle", game.title);
       setText("gameTagline", game.shortDescription);
       setText("longDescription", game.longDescription);
@@ -701,11 +740,26 @@
         googlePlayLink.addEventListener("click", (event) => event.preventDefault());
       }
 
-      const backUrl = pageUrl("index.html");
-      document.getElementById("brandLink").href = backUrl;
-      document.getElementById("allGamesLink").href = backUrl;
-      document.getElementById("backLink").href = backUrl;
-      document.getElementById("footerGamesLink").href = backUrl;
+      const homeUrl = pageUrl("index.html");
+      const gamesUrl = anchorUrl("#games");
+      const aboutUrl = anchorUrl("#about");
+      const contactUrl = anchorUrl("#contact");
+
+      ["brandLink", "navHome", "mobileHome", "backLink", "footerHome"].forEach((id) => {
+        document.getElementById(id).href = homeUrl;
+      });
+
+      ["navGames", "mobileGames", "footerGames"].forEach((id) => {
+        document.getElementById(id).href = gamesUrl;
+      });
+
+      ["navAbout", "mobileAbout", "footerAbout"].forEach((id) => {
+        document.getElementById(id).href = aboutUrl;
+      });
+
+      ["navContact", "mobileContact", "footerContact"].forEach((id) => {
+        document.getElementById(id).href = contactUrl;
+      });
     }
 
     function trackVisit() {
@@ -735,6 +789,13 @@
       messageArea.textContent = "";
     }
 
+    function setButtonLoading(showSpinner) {
+      const content = document.getElementById("sendButtonContent");
+      content.innerHTML = showSpinner
+        ? '<span class="spinner" aria-hidden="true"></span><span>Sending...</span>'
+        : 'Send Feedback';
+    }
+
     async function sendFeedback() {
       resetMessage();
 
@@ -750,7 +811,11 @@
       }
 
       sendButton.disabled = true;
-      sendButton.textContent = "Sending...";
+      let spinnerShown = false;
+      const spinnerTimer = setTimeout(() => {
+        spinnerShown = true;
+        setButtonLoading(true);
+      }, 1000);
 
       try {
         await fetch(feedbackUrl, {
@@ -769,18 +834,36 @@
 
         commentBox.value = "";
         document.getElementById("ageGroup").value = "prefer not to say";
-        showMessage("success", "Thank you! Your feedback was sent.");
+        showMessage("success", "Thank you! Your feedback has been sent.");
       } catch (error) {
         showMessage("error", "Sorry, something went wrong. Please try again.");
       } finally {
+        clearTimeout(spinnerTimer);
         sendButton.disabled = false;
-        sendButton.textContent = "Send Feedback";
+        setButtonLoading(false);
       }
+    }
+
+    function setupMobileMenu() {
+      const menuButton = document.getElementById("menuButton");
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      menuButton.addEventListener("click", () => {
+        const isOpen = mobileMenu.classList.toggle("open");
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+      });
+
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.remove("open");
+          menuButton.setAttribute("aria-expanded", "false");
+        });
+      });
     }
 
     renderGame();
     trackVisit();
-
+    setupMobileMenu();
     document.getElementById("sendButton").addEventListener("click", sendFeedback);
   </script>
 </body>
