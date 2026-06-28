@@ -194,19 +194,6 @@
       transform: none;
     }
 
-    .plain-link {
-      display: inline-flex;
-      align-items: center;
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-weight: 800;
-      min-height: 42px;
-    }
-
-    .plain-link:hover { color: var(--text); }
-
-    .back-row { margin-bottom: 18px; }
-
     .game-hero {
       display: grid;
       grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1fr);
@@ -286,16 +273,14 @@
     }
 
     .info-block h2,
-    .feedback-card h2,
-    .contact-card h2 {
+    .feedback-card h2 {
       margin: 0 0 12px;
       font-size: 26px;
       line-height: 1.15;
     }
 
     .info-block p,
-    .feedback-card p,
-    .contact-card p {
+    .feedback-card p {
       margin: 0;
       color: var(--text-secondary);
     }
@@ -340,8 +325,7 @@
       font-weight: 800;
     }
 
-    .feedback-card,
-    .contact-card {
+    .feedback-card {
       max-width: 780px;
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -447,6 +431,18 @@
 
     .email-link:hover { color: var(--text); }
 
+    .footer-contact {
+      color: var(--text-secondary);
+      text-align: right;
+      line-height: 1.55;
+    }
+
+    .footer-contact strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+
     .site-footer {
       margin-top: 54px;
       background: var(--deep-bg);
@@ -458,21 +454,12 @@
       max-width: var(--container);
       margin: 0 auto;
       padding: 24px 20px;
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 22px;
       font-size: 14px;
     }
-
-    .footer-links { display: flex; gap: 16px; }
-
-    .footer-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-    }
-
-    .footer-links a:hover { color: var(--text); }
 
     @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -504,8 +491,7 @@
       .game-image { min-height: 210px; }
       .button,
       .form-actions .button { width: 100%; }
-      .feedback-card,
-      .contact-card { padding: 20px; }
+      .feedback-card { padding: 20px; }
     }
   </style>
 </head>
@@ -539,9 +525,6 @@
 
   <main class="page-wrap">
     <div class="container">
-      <div class="back-row">
-        <a class="plain-link" id="backLink" href="index.html">← Home</a>
-      </div>
 
       <section class="game-hero" aria-labelledby="gameTitle">
         <div class="game-image" id="gameImage" role="img" aria-label="Game image placeholder"></div>
@@ -610,27 +593,15 @@
           <div class="message" id="messageArea" role="status" aria-live="polite"></div>
         </article>
       </section>
-
-      <section class="section" id="contact">
-        <article class="contact-card">
-          <h2>Contact</h2>
-          <p>
-            For questions, issues or direct messages, contact S&amp;S Studio at
-            <a class="email-link" href="mailto:ssgamestudiomail@gmail.com">ssgamestudiomail@gmail.com</a>.
-          </p>
-        </article>
-      </section>
     </div>
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer" id="contact">
     <div class="footer-inner">
       <div>© 2026 S&amp;S Studio</div>
-      <div class="footer-links">
-        <a id="footerHome" href="index.html">Home</a>
-        <a id="footerGames" href="index.html#games">Games</a>
-        <a id="footerAbout" href="index.html#about">About us</a>
-        <a id="footerContact" href="index.html#contact">Contact</a>
+      <div class="footer-contact">
+        <strong>Contact</strong>
+        <span>ssgamestudiomail@gmail.com</span>
       </div>
     </div>
   </footer>
@@ -745,19 +716,19 @@
       const aboutUrl = anchorUrl("#about");
       const contactUrl = anchorUrl("#contact");
 
-      ["brandLink", "navHome", "mobileHome", "backLink", "footerHome"].forEach((id) => {
+      ["brandLink", "navHome", "mobileHome"].forEach((id) => {
         document.getElementById(id).href = homeUrl;
       });
 
-      ["navGames", "mobileGames", "footerGames"].forEach((id) => {
+      ["navGames", "mobileGames"].forEach((id) => {
         document.getElementById(id).href = gamesUrl;
       });
 
-      ["navAbout", "mobileAbout", "footerAbout"].forEach((id) => {
+      ["navAbout", "mobileAbout"].forEach((id) => {
         document.getElementById(id).href = aboutUrl;
       });
 
-      ["navContact", "mobileContact", "footerContact"].forEach((id) => {
+      ["navContact", "mobileContact"].forEach((id) => {
         document.getElementById(id).href = contactUrl;
       });
     }
