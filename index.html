@@ -193,8 +193,7 @@
     .about-hero p,
     .section-header p,
     .game-card p,
-    .goal-card p,
-    .contact-panel p {
+    .goal-card p {
       color: var(--text-secondary);
     }
 
@@ -281,8 +280,7 @@
     }
 
     .game-card,
-    .goal-card,
-    .contact-panel {
+    .goal-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: var(--radius-card);
@@ -332,8 +330,7 @@
     }
 
     .game-card p,
-    .goal-card p,
-    .contact-panel p { margin: 0; }
+    .goal-card p { margin: 0; }
 
     .card-action {
       margin-top: 18px;
@@ -356,23 +353,6 @@
       font-size: 20px;
     }
 
-    .contact-panel {
-      padding: 28px;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 24px;
-      align-items: center;
-      background:
-        linear-gradient(145deg, rgba(56,189,248,0.06), rgba(139,92,246,0.06)),
-        var(--section-bg);
-    }
-
-    .contact-panel h2 {
-      margin: 0 0 10px;
-      font-size: 30px;
-      line-height: 1.15;
-    }
-
     .email-link {
       color: #CFFAFE;
       font-weight: 800;
@@ -380,6 +360,18 @@
     }
 
     .email-link:hover { color: var(--text); }
+
+    .footer-contact {
+      color: var(--text-secondary);
+      text-align: right;
+      line-height: 1.55;
+    }
+
+    .footer-contact strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
 
     .site-footer {
       margin-top: 54px;
@@ -392,24 +384,12 @@
       max-width: var(--container);
       margin: 0 auto;
       padding: 24px 20px;
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 22px;
       font-size: 14px;
     }
-
-    .footer-links {
-      display: flex;
-      gap: 16px;
-    }
-
-    .footer-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-    }
-
-    .footer-links a:hover { color: var(--text); }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -420,12 +400,10 @@
     }
 
     @media (max-width: 920px) {
-      .hero-grid,
-      .contact-panel { grid-template-columns: 1fr; }
+      .hero-grid { grid-template-columns: 1fr; }
       .about-hero { padding-left: 22px; }
       .games-grid,
       .goal-grid { grid-template-columns: 1fr 1fr; }
-      .contact-panel .button { width: fit-content; }
     }
 
     @media (max-width: 640px) {
@@ -433,16 +411,35 @@
       .header-inner { padding: 0 18px; }
       .desktop-nav { display: none; }
       .mobile-nav { display: flex; }
-      .hero { padding: 42px 0 34px; }
-      .section { padding: 42px 0; }
+      .container { padding: 0 18px; }
+      .hero { padding: 34px 0 24px; }
+      .hero-grid { gap: 26px; }
+      .eyebrow { margin-bottom: 8px; font-size: 13px; }
+      .hero h1 { font-size: 34px; line-height: 1.08; letter-spacing: -0.8px; margin-bottom: 12px; }
+      .hero p { font-size: 16px; line-height: 1.55; }
+      .hero-actions { margin-top: 20px; align-items: stretch; }
+      .button { width: 100%; min-height: 48px; }
+      .trust-row { margin-top: 14px; font-size: 13px; line-height: 1.45; }
+      .about-hero { margin-top: 8px; padding-left: 14px; border-left-width: 1px; }
+      .about-hero h2 { font-size: 28px; }
+      .about-hero p { font-size: 15px; line-height: 1.55; }
+      .section { padding: 34px 0; }
+      .section-header { margin-bottom: 18px; }
+      .section-header h2 { font-size: 30px; }
+      .section-header p { font-size: 16px; line-height: 1.55; }
       .games-grid,
-      .goal-grid { grid-template-columns: 1fr; }
-      .button { width: 100%; }
-      .hero-actions { align-items: stretch; }
-      .trust-row { font-size: 13px; }
-      .about-hero { margin-top: 14px; }
-      .contact-panel { padding: 22px; }
-      .contact-panel .button { width: 100%; }
+      .goal-grid { grid-template-columns: 1fr; gap: 16px; }
+      .game-card { padding: 18px; border-radius: 22px; }
+      .game-art { height: 130px; aspect-ratio: auto; margin-bottom: 14px; border-radius: 18px; }
+      .game-card h3 { font-size: 24px; }
+      .game-card p { font-size: 16px; line-height: 1.55; }
+      .card-action { margin-top: 16px; }
+      .goal-card { padding: 4px 0 18px; border: 0; border-bottom: 1px solid rgba(148, 163, 184, 0.16); border-radius: 0; background: transparent; box-shadow: none; }
+      .goal-card:last-child { border-bottom: 0; }
+      .goal-card h3 { font-size: 22px; }
+      .goal-card p { font-size: 16px; line-height: 1.55; }
+      .footer-inner { grid-template-columns: 1fr; padding: 22px 18px; gap: 14px; }
+      .footer-contact { text-align: left; }
     }
   </style>
 </head>
@@ -504,7 +501,7 @@
       <div class="container">
         <div class="section-header">
           <h2>Games</h2>
-          <p>Browse our Android games, open more info, and leave private feedback for the titles you try.</p>
+          <p>Browse our Android games, open more info, and leave a comment to help us improve.</p>
         </div>
 
         <div class="games-grid" id="gamesGrid" aria-live="polite"></div>
@@ -536,32 +533,14 @@
         </div>
       </div>
     </section>
-
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="contact-panel">
-          <div>
-            <h2>Contact</h2>
-            <p>
-              For questions, issues or direct messages, contact S&amp;S Studio at
-              <a class="email-link" href="mailto:ssgamestudiomail@gmail.com">ssgamestudiomail@gmail.com</a>.
-            </p>
-          </div>
-
-          <a class="button" href="mailto:ssgamestudiomail@gmail.com">Email S&amp;S Studio</a>
-        </div>
-      </div>
-    </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer" id="contact">
     <div class="footer-inner">
       <div>© 2026 S&amp;S Studio</div>
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="#games">Games</a>
-        <a href="#about">About us</a>
-        <a href="#contact">Contact</a>
+      <div class="footer-contact">
+        <strong>Contact</strong>
+        <span>ssgamestudiomail@gmail.com</span>
       </div>
     </div>
   </footer>
