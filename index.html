@@ -10,10 +10,8 @@
     :root {
       --page-bg: #0B1020;
       --deep-bg: #080C18;
-      --section-bg: #11182B;
       --card-bg: #151E33;
       --card-bg-2: #10182B;
-      --input-bg: #0F172A;
       --border: #26324D;
       --soft-border: rgba(148, 163, 184, 0.18);
       --text: #F4F7FB;
@@ -21,16 +19,13 @@
       --text-muted: #7E8AA5;
       --accent: #38BDF8;
       --purple: #8B5CF6;
-      --success: #22C55E;
       --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
-      --radius-panel: 30px;
       --radius-card: 24px;
       --radius-button: 15px;
       --container: 1160px;
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -105,15 +100,11 @@
 
     .desktop-nav a,
     .mobile-home,
-    .mobile-menu a {
-      text-decoration: none;
-    }
+    .mobile-menu a { text-decoration: none; }
 
     .desktop-nav a:hover,
     .mobile-home:hover,
-    .mobile-menu a:hover {
-      color: var(--text);
-    }
+    .mobile-menu a:hover { color: var(--text); }
 
     .mobile-nav {
       display: none;
@@ -191,11 +182,10 @@
 
     .hero p,
     .about-hero p,
+    .mobile-about p,
     .section-header p,
     .game-card p,
-    .goal-card p {
-      color: var(--text-secondary);
-    }
+    .goal-card p { color: var(--text-secondary); }
 
     .hero p {
       max-width: 650px;
@@ -237,22 +227,27 @@
       font-weight: 700;
     }
 
-    .about-hero {
+    .about-hero,
+    .mobile-about {
       padding-left: 30px;
       border-left: 2px solid rgba(56,189,248,0.35);
     }
 
-    .about-hero h2 {
+    .about-hero h2,
+    .mobile-about h2 {
       margin: 0 0 14px;
       font-size: clamp(28px, 3.5vw, 38px);
       line-height: 1.1;
       letter-spacing: -0.8px;
     }
 
-    .about-hero p {
+    .about-hero p,
+    .mobile-about p {
       margin: 0;
       font-size: 17px;
     }
+
+    .mobile-about-section { display: none; }
 
     .section { padding: 56px 0; }
 
@@ -353,26 +348,6 @@
       font-size: 20px;
     }
 
-    .email-link {
-      color: #CFFAFE;
-      font-weight: 800;
-      text-decoration: none;
-    }
-
-    .email-link:hover { color: var(--text); }
-
-    .footer-contact {
-      color: var(--text-secondary);
-      text-align: right;
-      line-height: 1.55;
-    }
-
-    .footer-contact strong {
-      display: block;
-      color: var(--text);
-      margin-bottom: 2px;
-    }
-
     .site-footer {
       margin-top: 54px;
       background: var(--deep-bg);
@@ -389,6 +364,18 @@
       align-items: center;
       gap: 22px;
       font-size: 14px;
+    }
+
+    .footer-contact {
+      color: var(--text-secondary);
+      text-align: right;
+      line-height: 1.55;
+    }
+
+    .footer-contact strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 2px;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -412,33 +399,53 @@
       .desktop-nav { display: none; }
       .mobile-nav { display: flex; }
       .container { padding: 0 18px; }
-      .hero { padding: 34px 0 24px; }
-      .hero-grid { gap: 26px; }
-      .eyebrow { margin-bottom: 8px; font-size: 13px; }
-      .hero h1 { font-size: 34px; line-height: 1.08; letter-spacing: -0.8px; margin-bottom: 12px; }
+      .hero { padding: 36px 0 28px; }
+      .hero-grid { display: block; }
+      .eyebrow { display: none; }
+      .hero h1 {
+        font-size: 35px;
+        line-height: 1.08;
+        letter-spacing: -0.8px;
+        margin-bottom: 12px;
+      }
       .hero p { font-size: 16px; line-height: 1.55; }
-      .hero-actions { margin-top: 20px; align-items: stretch; }
+      .hero-actions { margin-top: 20px; }
       .button { width: 100%; min-height: 48px; }
       .trust-row { margin-top: 14px; font-size: 13px; line-height: 1.45; }
-      .about-hero { margin-top: 8px; padding-left: 14px; border-left-width: 1px; }
-      .about-hero h2 { font-size: 28px; }
-      .about-hero p { font-size: 15px; line-height: 1.55; }
-      .section { padding: 34px 0; }
+      .about-hero { display: none; }
+      .desktop-games-section { display: none; }
+      .section { padding: 40px 0; }
       .section-header { margin-bottom: 18px; }
-      .section-header h2 { font-size: 30px; }
+      .section-header h2 { font-size: 31px; }
       .section-header p { font-size: 16px; line-height: 1.55; }
-      .games-grid,
-      .goal-grid { grid-template-columns: 1fr; gap: 16px; }
-      .game-card { padding: 18px; border-radius: 22px; }
-      .game-art { height: 130px; aspect-ratio: auto; margin-bottom: 14px; border-radius: 18px; }
-      .game-card h3 { font-size: 24px; }
-      .game-card p { font-size: 16px; line-height: 1.55; }
-      .card-action { margin-top: 16px; }
-      .goal-card { padding: 4px 0 18px; border: 0; border-bottom: 1px solid rgba(148, 163, 184, 0.16); border-radius: 0; background: transparent; box-shadow: none; }
+      .goal-grid { grid-template-columns: 1fr; gap: 0; }
+      .goal-card {
+        padding: 22px 0;
+        border: 0;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+      .goal-card:first-child { padding-top: 6px; }
       .goal-card:last-child { border-bottom: 0; }
-      .goal-card h3 { font-size: 22px; }
+      .goal-card h3 { font-size: 24px; }
       .goal-card p { font-size: 16px; line-height: 1.55; }
-      .footer-inner { grid-template-columns: 1fr; padding: 22px 18px; gap: 14px; }
+      .mobile-about-section {
+        display: block;
+        padding: 34px 0 10px;
+      }
+      .mobile-about {
+        padding-left: 14px;
+        border-left-width: 1px;
+      }
+      .mobile-about h2 { font-size: 29px; }
+      .mobile-about p { font-size: 15px; line-height: 1.55; }
+      .footer-inner {
+        grid-template-columns: 1fr;
+        padding: 22px 18px;
+        gap: 14px;
+      }
       .footer-contact { text-align: left; }
     }
   </style>
@@ -463,8 +470,8 @@
         <a class="mobile-home" href="index.html">Home</a>
         <button class="menu-button" id="menuButton" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
         <div class="mobile-menu" id="mobileMenu">
-          <a href="#games">Games</a>
-          <a href="#about">About us</a>
+          <a id="mobileGamesLink" href="games.html">Games</a>
+          <a href="#aboutMobile">About us</a>
           <a href="#contact">Contact</a>
         </div>
       </nav>
@@ -482,7 +489,7 @@
           </p>
 
           <div class="hero-actions">
-            <a class="button" href="#games">Explore Games</a>
+            <a class="button" id="exploreGamesLink" href="games.html">Explore Games</a>
           </div>
 
           <div class="trust-row">Free to play • No forced ads • Built from feedback</div>
@@ -497,7 +504,7 @@
       </div>
     </section>
 
-    <section class="section" id="games">
+    <section class="section desktop-games-section" id="games">
       <div class="container">
         <div class="section-header">
           <h2>Games</h2>
@@ -530,6 +537,17 @@
             <h3>More on the way</h3>
             <p>We are currently working hard on more games for future release.</p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="mobile-about-section" id="aboutMobile" aria-labelledby="about-mobile-heading">
+      <div class="container">
+        <div class="mobile-about">
+          <h2 id="about-mobile-heading">About S&amp;S Studio</h2>
+          <p>
+            S&amp;S Studio is a small Android game studio built by two young self-taught developers, Silver~Sword and SUB_STAG. We started with almost no capital and learned to build from the ground up. Our goal is to create simple, enjoyable mobile games and improve them through real player feedback.
+          </p>
         </div>
       </div>
     </section>
@@ -578,12 +596,17 @@
     const params = new URLSearchParams(window.location.search);
     const campaignId = params.get("src") || params.get("campaign") || "direct";
 
+    function withCampaign(path) {
+      return path + "?src=" + encodeURIComponent(campaignId);
+    }
+
     function buildGameUrl(gameId) {
       return "game.html?game=" + encodeURIComponent(gameId) + "&src=" + encodeURIComponent(campaignId);
     }
 
     function renderGames() {
       const gamesGrid = document.getElementById("gamesGrid");
+      if (!gamesGrid) return;
 
       gamesGrid.innerHTML = games.map((game) => `
         <article class="game-card">
@@ -623,6 +646,11 @@
     function setupMobileMenu() {
       const menuButton = document.getElementById("menuButton");
       const mobileMenu = document.getElementById("mobileMenu");
+      const exploreGamesLink = document.getElementById("exploreGamesLink");
+      const mobileGamesLink = document.getElementById("mobileGamesLink");
+
+      exploreGamesLink.href = withCampaign("games.html");
+      mobileGamesLink.href = withCampaign("games.html");
 
       menuButton.addEventListener("click", () => {
         const isOpen = mobileMenu.classList.toggle("open");
