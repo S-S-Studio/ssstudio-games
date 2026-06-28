@@ -163,6 +163,18 @@
 
     .page-wrap { padding: 34px 0 0; }
 
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 15px;
+    }
+
+    .back-link:hover { color: var(--text); }
+
     .button {
       display: inline-flex;
       align-items: center;
@@ -486,7 +498,8 @@
       .header-inner { padding: 0 18px; }
       .desktop-nav { display: none; }
       .mobile-nav { display: flex; }
-      .page-wrap { padding-top: 24px; }
+      .page-wrap { padding-top: 22px; }
+      .back-link { margin-bottom: 14px; font-size: 15px; }
       .game-hero { padding: 22px; }
       .game-image { min-height: 210px; }
       .button,
@@ -506,7 +519,7 @@
 
       <nav class="desktop-nav" aria-label="Main navigation">
         <a id="navHome" href="index.html">Home</a>
-        <a id="navGames" href="index.html#games">Games</a>
+        <a id="navGames" href="games.html">Games</a>
         <a id="navAbout" href="index.html#about">About us</a>
         <a id="navContact" href="index.html#contact">Contact</a>
       </nav>
@@ -515,7 +528,7 @@
         <a class="mobile-home" id="mobileHome" href="index.html">Home</a>
         <button class="menu-button" id="menuButton" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
         <div class="mobile-menu" id="mobileMenu">
-          <a id="mobileGames" href="index.html#games">Games</a>
+          <a id="mobileGames" href="games.html">Games</a>
           <a id="mobileAbout" href="index.html#about">About us</a>
           <a id="mobileContact" href="index.html#contact">Contact</a>
         </div>
@@ -525,6 +538,8 @@
 
   <main class="page-wrap">
     <div class="container">
+
+      <a class="back-link" id="backToGames" href="games.html">← Games</a>
 
       <section class="game-hero" aria-labelledby="gameTitle">
         <div class="game-image" id="gameImage" role="img" aria-label="Game image placeholder"></div>
@@ -712,9 +727,12 @@
       }
 
       const homeUrl = pageUrl("index.html");
-      const gamesUrl = anchorUrl("#games");
+      const gamesUrl = pageUrl("games.html");
       const aboutUrl = anchorUrl("#about");
       const contactUrl = anchorUrl("#contact");
+
+
+      document.getElementById("backToGames").href = gamesUrl;
 
       ["brandLink", "navHome", "mobileHome"].forEach((id) => {
         document.getElementById(id).href = homeUrl;
