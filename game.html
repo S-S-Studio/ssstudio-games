@@ -166,6 +166,7 @@
     .back-link {
       display: inline-flex;
       align-items: center;
+      gap: 8px;
       margin-bottom: 18px;
       color: var(--text-secondary);
       text-decoration: none;
@@ -174,6 +175,23 @@
     }
 
     .back-link:hover { color: var(--text); }
+
+    .chevron-icon {
+      width: 30px;
+      height: 30px;
+      display: block;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 3.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transform-origin: center;
+      flex: 0 0 auto;
+    }
+
+    .chevron-icon.back {
+      transform: rotate(90deg);
+    }
 
     .button {
       display: inline-flex;
@@ -443,34 +461,31 @@
 
     .email-link:hover { color: var(--text); }
 
-    .footer-contact {
-      color: var(--text-secondary);
-      text-align: right;
-      line-height: 1.55;
-    }
-
-    .footer-contact strong {
-      display: block;
-      color: var(--text);
-      margin-bottom: 2px;
-    }
-
     .site-footer {
-      margin-top: 54px;
-      background: var(--deep-bg);
-      border-top: 1px solid var(--border);
+      margin-top: 38px;
+      background: transparent;
+      border-top: 0;
       color: var(--text-muted);
     }
 
     .footer-inner {
-      max-width: var(--container);
+      max-width: 380px;
       margin: 0 auto;
-      padding: 24px 20px;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
+      padding: 18px 20px 28px;
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 22px;
+      justify-content: center;
+      gap: 7px;
       font-size: 14px;
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    .footer-contact {
+      color: var(--text-secondary);
+      text-align: center;
+      line-height: 1.45;
     }
 
     @keyframes spin { to { transform: rotate(360deg); } }
@@ -539,7 +554,7 @@
   <main class="page-wrap">
     <div class="container">
 
-      <a class="back-link" id="backToGames" href="games.html">← Games</a>
+      <a class="back-link" id="backToGames" href="games.html" aria-label="Back to games"><svg class="chevron-icon back" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8.5L12 15.5L19 8.5"></path></svg><span>Games</span></a>
 
       <section class="game-hero" aria-labelledby="gameTitle">
         <div class="game-image" id="gameImage" role="img" aria-label="Game image placeholder"></div>
@@ -613,11 +628,8 @@
 
   <footer class="site-footer" id="contact">
     <div class="footer-inner">
+      <div class="footer-contact">Contact: ssgamestudiomail@gmail.com</div>
       <div>© 2026 S&amp;S Studio</div>
-      <div class="footer-contact">
-        <strong>Contact</strong>
-        <span>ssgamestudiomail@gmail.com</span>
-      </div>
     </div>
   </footer>
 
