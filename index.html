@@ -349,33 +349,30 @@
     }
 
     .site-footer {
-      margin-top: 54px;
-      background: var(--deep-bg);
-      border-top: 1px solid var(--border);
+      margin-top: 38px;
+      background: transparent;
+      border-top: 0;
       color: var(--text-muted);
     }
 
     .footer-inner {
-      max-width: var(--container);
+      max-width: 380px;
       margin: 0 auto;
-      padding: 24px 20px;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
+      padding: 18px 20px 28px;
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 22px;
+      justify-content: center;
+      gap: 7px;
       font-size: 14px;
+      line-height: 1.45;
+      text-align: center;
     }
 
     .footer-contact {
       color: var(--text-secondary);
-      text-align: right;
-      line-height: 1.55;
-    }
-
-    .footer-contact strong {
-      display: block;
-      color: var(--text);
-      margin-bottom: 2px;
+      text-align: center;
+      line-height: 1.45;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -441,12 +438,6 @@
       }
       .mobile-about h2 { font-size: 29px; }
       .mobile-about p { font-size: 15px; line-height: 1.55; }
-      .footer-inner {
-        grid-template-columns: 1fr;
-        padding: 22px 18px;
-        gap: 14px;
-      }
-      .footer-contact { text-align: left; }
     }
   </style>
 </head>
@@ -555,11 +546,8 @@
 
   <footer class="site-footer" id="contact">
     <div class="footer-inner">
+      <div class="footer-contact">Contact: ssgamestudiomail@gmail.com</div>
       <div>© 2026 S&amp;S Studio</div>
-      <div class="footer-contact">
-        <strong>Contact</strong>
-        <span>ssgamestudiomail@gmail.com</span>
-      </div>
     </div>
   </footer>
 
