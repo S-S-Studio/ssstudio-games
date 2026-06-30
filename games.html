@@ -231,22 +231,39 @@
     }
 
     .expand-button {
-      min-width: 34px;
-      min-height: 42px;
+      min-width: 46px;
+      min-height: 46px;
       border: 0;
       border-radius: 0;
       background: transparent;
       box-shadow: none;
       color: var(--text-secondary);
-      font-size: 24px;
-      line-height: 1;
       cursor: pointer;
       padding: 0;
+      display: grid;
+      place-items: center;
       appearance: none;
       -webkit-appearance: none;
     }
 
     .expand-button:hover { color: var(--text); }
+
+    .chevron-icon {
+      width: 30px;
+      height: 30px;
+      display: block;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 3.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      pointer-events: none;
+      transform-origin: center;
+    }
+
+    .chevron-icon.up {
+      transform: rotate(180deg);
+    }
 
     .row-more {
       display: none;
@@ -281,33 +298,30 @@
     }
 
     .site-footer {
-      margin-top: 22px;
-      background: var(--deep-bg);
-      border-top: 1px solid var(--border);
+      margin-top: 38px;
+      background: transparent;
+      border-top: 0;
       color: var(--text-muted);
     }
 
     .footer-inner {
-      max-width: 1160px;
+      max-width: 380px;
       margin: 0 auto;
-      padding: 24px 20px;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
+      padding: 18px 20px 28px;
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 22px;
+      justify-content: center;
+      gap: 7px;
       font-size: 14px;
+      line-height: 1.45;
+      text-align: center;
     }
 
     .footer-contact {
       color: var(--text-secondary);
-      text-align: right;
-      line-height: 1.55;
-    }
-
-    .footer-contact strong {
-      display: block;
-      color: var(--text);
-      margin-bottom: 2px;
+      text-align: center;
+      line-height: 1.45;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -329,10 +343,8 @@
       .game-icon { width: 64px; height: 64px; border-radius: 16px; font-size: 15px; }
       .game-title { font-size: 19px; }
       .game-short { font-size: 13px; }
-      .expand-button { min-width: 30px; min-height: 38px; border-radius: 0; font-size: 22px; }
+      .expand-button { min-width: 44px; min-height: 44px; }
       .row-more { padding: 0 12px 14px 88px; }
-      .footer-inner { grid-template-columns: 1fr; padding: 22px 18px; gap: 14px; }
-      .footer-contact { text-align: left; }
     }
   </style>
 </head>
@@ -379,11 +391,8 @@
 
   <footer class="site-footer" id="contact">
     <div class="footer-inner">
+      <div class="footer-contact">Contact: ssgamestudiomail@gmail.com</div>
       <div>© 2026 S&amp;S Studio</div>
-      <div class="footer-contact">
-        <strong>Contact</strong>
-        <span>ssgamestudiomail@gmail.com</span>
-      </div>
     </div>
   </footer>
 
@@ -441,7 +450,7 @@
               <h2 class="game-title">${game.title}</h2>
               <p class="game-short">${game.tinyDescription}</p>
             </div>
-            <button class="expand-button" type="button" aria-expanded="false" aria-label="Show more about ${game.title}">⌄</button>
+            <button class="expand-button" type="button" aria-expanded="false" aria-label="Show more about ${game.title}"><svg class="chevron-icon down" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8.5L12 15.5L19 8.5"></path></svg></button>
           </div>
           <div class="row-more">
             <div class="row-meta">
@@ -478,7 +487,8 @@
           const expanded = row.classList.toggle("expanded");
           button.setAttribute("aria-expanded", String(expanded));
           button.setAttribute("aria-label", expanded ? "Show less" : "Show more");
-          button.textContent = expanded ? "⌃" : "⌄";
+          const icon = button.querySelector(".chevron-icon");
+          icon.classList.toggle("up", expanded);
         });
       });
     }
